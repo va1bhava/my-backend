@@ -1,29 +1,27 @@
 package com.example.rest.entity;
-import jakarta.persistence.*;
-import java.time.LocalDateTime;
-import jakarta.persistence.Table;
 
-@Entity
-@Table(name="weather_info")
+import java.time.LocalDateTime;
+
+
+
 public class Weather {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int id;
 
-    @Column(name="city", unique = true)
+
     private String city;
 
-    @Column(name="temp")
+
     private double temperature;
 
-    @Column(name="humidity")
+
     private int humidity;
 
-    @Column(name="description")
+
     private String description;
 
-    @Column(name ="time")
+
     private LocalDateTime createdAt;
 
     public Weather() {

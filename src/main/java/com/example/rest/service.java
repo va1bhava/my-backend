@@ -1,5 +1,5 @@
 package com.example.rest;
-import com.example.rest.DAO.dao;
+
 import com.example.rest.entity.Weather;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,12 +12,7 @@ import java.util.List;
 
 @Service
 public class service {
-   private dao dao;
-   @Autowired
-    public service( dao dao){
-       this.dao=dao;
-   }
-   public void fetchandsave(String city){
+   public Weather fetch(String city){
 
       String key="ee11ed933f82352a8a5c0128284fea56";
       String url= "https://api.openweathermap.org/data/2.5/weather?q="
@@ -39,17 +34,10 @@ public class service {
       weather.setHumidity(humidity);
       weather.setDescription(description);
       weather.setCreatedAt(LocalDateTime.now());
-      dao.save(weather);
+
+      return weather;
    }
-   public List<Weather>weather(String city){
-      List<Weather> list =dao.weather(city);
-      if(list.isEmpty()){
-         fetchandsave(city);
-         list=dao.weather(city);
-         return list;
-      }else{
-         return list;
-      }
+
 
    }
-}
+
